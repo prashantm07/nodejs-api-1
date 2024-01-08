@@ -6,6 +6,7 @@ mongoose.connect(db_url, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => {
     console.log("Connecttion Successful..!");
