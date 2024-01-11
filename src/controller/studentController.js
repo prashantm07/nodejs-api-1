@@ -1,18 +1,5 @@
 const studentsData = require("../model/students");
 
-// exports.checkID =  (req, res, next, val) => {
-//   const _id =  req.params.id;
-//   const check =  MensRanking.findById(_id);
-//   // console.log(check)
-//   if(check._id*1 > MensRanking.length ) {
-//     return res.status(404).json({
-//       status: "Filed",
-//       message: `ID Not Found`
-//     })
-//   }
-//   next();
-// }
-
 exports.getAll = async (req, res) => {
   try {
     const getStudents = await studentsData.find({}).sort({ ranking: 1 });
@@ -49,9 +36,14 @@ exports.getById = async (req, res) => {
 
 exports.addNewRecord = async (req, res) => {
   try {
-    const addingStudentsRecords = new studentsData(req.body);
-    const insertStudent = await addingStudentsRecords.save();
-    res.status(201).send(insertStudent);
+    // const addingStudentsRecords = new studentsData(req.body);
+    // const insertStudent = await addingStudentsRecords.save();
+    
+    const insertStudent = await studentsData.create(req.body);
+    res.status(201).json({
+      Status : "New record added successfully..!",
+      insertStudent : insertStudent
+    })
   } catch (error) {
     res.status(401).send(error);
   }
