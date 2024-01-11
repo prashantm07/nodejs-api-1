@@ -6,7 +6,7 @@ exports.getAll = async (req, res) => {
     if (!getStudents || getStudents.length === 0) {
       return res.status(404).json({
         status: `Not found`,
-        message: `Student Data Not Found`
+        message: `Student Data Not Found`,
       });
     }
     res.status(200).send(getStudents);
@@ -17,20 +17,20 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
   const student_id = req.params.id;
-  console.log(student_id)
+  console.log(student_id);
   try {
-    const getStudents = await studentsData.findOne({student_id: student_id});
+    const getStudents = await studentsData.findOne({ student_id: student_id });
     if (!getStudents) {
       return res.status(404).json({
         status: `Not found`,
-        message: `${student_id} is not a record`
+        message: `${student_id} is not a record`,
       });
     }
     res.send(getStudents);
   } catch (error) {
     res.status(400).json({
-      error: 'Id not found',
-    })
+      error: "Id not found",
+    });
   }
 };
 
@@ -38,12 +38,12 @@ exports.addNewRecord = async (req, res) => {
   try {
     // const addingStudentsRecords = new studentsData(req.body);
     // const insertStudent = await addingStudentsRecords.save();
-    
+
     const insertStudent = await studentsData.create(req.body);
     res.status(201).json({
-      Status : "New record added successfully..!",
-      insertStudent : insertStudent
-    })
+      Status: "New record added successfully..!",
+      insertStudent: insertStudent,
+    });
   } catch (error) {
     res.status(401).send(error);
   }
@@ -52,13 +52,17 @@ exports.addNewRecord = async (req, res) => {
 exports.updateRecord = async (req, res) => {
   const student_id = req.params.id;
   try {
-    const updateStudent = await studentsData.findOneAndUpdate({student_id : student_id}, req.body, {
-      new: true,
-    });
+    const updateStudent = await studentsData.findOneAndUpdate(
+      { student_id: student_id },
+      req.body,
+      {
+        new: true,
+      }
+    );
     if (!updateStudent) {
       return res.status(404).json({
         status: `Not found`,
-        message: `${student_id} is not a record`
+        message: `${student_id} is not a record`,
       });
     }
     res.send(updateStudent);
@@ -69,13 +73,15 @@ exports.updateRecord = async (req, res) => {
 
 exports.deleteRecord = async (req, res) => {
   const student_id = req.params.id;
-  console.log(student_id)
+  console.log(student_id);
   try {
-    const DeleteRecord = await studentsData.findOneAndDelete({student_id : student_id});
+    const DeleteRecord = await studentsData.findOneAndDelete({
+      student_id: student_id,
+    });
     if (!DeleteRecord) {
       return res.status(404).json({
         status: `Not found`,
-        message: `${student_id} is not a record`
+        message: `${student_id} is not a record`,
       });
     }
     res.status(200).json({

@@ -11,7 +11,7 @@ const userScema = new mongoose.Schema({
     required: true,
     undefined: true,
     lowercase: true,
-    validate : [validator.isEmail, 'Please enter a valid email']
+    validate: [validator.isEmail, "Please enter a valid email"],
   },
   password: {
     type: "String",
@@ -30,9 +30,7 @@ const userScema = new mongoose.Schema({
   },
 });
 userScema.pre("save", function (next) {
-  if (this.isModified("password"))
-    return next();
-
+  if (this.isModified("password")) return next();
 });
 
 const User = new mongoose.model("User", userScema);

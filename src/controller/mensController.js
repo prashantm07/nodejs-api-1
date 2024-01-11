@@ -29,8 +29,8 @@ exports.getById = async (req, res) => {
     res.send(getMen);
   } catch (error) {
     res.status(400).json({
-      error: 'Id not found',
-    })
+      error: "Id not found",
+    });
   }
 };
 
@@ -61,7 +61,7 @@ exports.deleteRecord = async (req, res) => {
   const _id = req.params.id;
   try {
     const DeleteRecord = await MensRanking.findByIdAndDelete(_id);
-    console.log(DeleteRecord,"******");
+    console.log(DeleteRecord, "******");
     // res.status(204).send(updateMen);
     res.status(200).json({
       status: "Record deleted..!",
@@ -70,8 +70,7 @@ exports.deleteRecord = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: ` Not found`,
-      message : `${_id} is not a record`
-
+      message: `${_id} is not a record`,
     });
   }
 };

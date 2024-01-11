@@ -9,8 +9,8 @@ exports.getAllUses = async (req, res) => {
     });
   } catch (error) {
     res.status(401).json({
-      status : "Data not found"
-    })
+      status: "Data not found",
+    });
   }
 };
 
