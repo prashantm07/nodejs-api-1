@@ -2,8 +2,17 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const userScema = new mongoose.Schema({
-  name: {
+  userName: {
     type: "String",
+    // required: true,
+    unique: true
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
     required: true,
   },
   email: {
@@ -11,9 +20,16 @@ const userScema = new mongoose.Schema({
     required: true,
     undefined: true,
     lowercase: true,
+    unique: true,
     validate: [validator.isEmail, "Please enter a valid email"],
   },
-  password: {
+  role:{
+    type: "String",
+    enum : ['user', 'admin'],
+    default : 'user'
+
+  }
+,  password: {
     type: "String",
     required: [true, "Please provide a password"],
   },
@@ -29,6 +45,7 @@ const userScema = new mongoose.Schema({
     },
   },
 });
+
 userScema.pre("save", function (next) {
   if (this.isModified("password")) return next();
 });

@@ -38,14 +38,26 @@ exports.addNewRecord = async (req, res) => {
   try {
     // const addingStudentsRecords = new studentsData(req.body);
     // const insertStudent = await addingStudentsRecords.save();
-
-    const insertStudent = await studentsData.create(req.body);
-    res.status(201).json({
-      Status: "New record added successfully..!",
-      insertStudent: insertStudent,
-    });
+    const student_id =  req.body.student_id;
+    console.log(student_id);
+    const getStudents = await studentsData.findOne({ student_id });
+    console.log(getStudents)
+    if(getStudents) {
+      return res.status(404).json({
+        status: `Failed`,
+        message: `already exits`,
+      })
+    }
+    else{
+      
+      const insertStudent = await studentsData.create(req.body);
+      res.status(201).json({
+        Status: "New record added successfully..!",
+        insertStudent: insertStudent,
+      });
+    }
   } catch (error) {
-    res.status(401).send(error);
+    res.status(401).send("already exits");
   }
 };
 
