@@ -9,7 +9,7 @@ mongoose.connect(db_url, {
     useFindAndModify: false
   })
   .then(() => {
-    console.log("Connecttion Successful..!");
+    console.log("Connection Successful..!");
   })
   .catch((err) => {
     console.log("Connection Failed..! "+err);

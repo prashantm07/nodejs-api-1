@@ -23,27 +23,33 @@ const userScema = new mongoose.Schema({
     unique: true,
     validate: [validator.isEmail, "Please enter a valid email"],
   },
+  mobileNumber:{
+    type : Number,
+    required: true,
+
+  },
   role:{
     type: "String",
-    enum : ['user', 'admin'],
-    default : 'user'
+    enum : ['USER', 'ADMIN'],
+    default : 'USER',
+    uppercase: true,
 
   }
 ,  password: {
     type: "String",
     required: [true, "Please provide a password"],
   },
-  passwordConfirmation: {
-    type: "String",
-    required: [true, "Please confirm a password"],
-    validate: {
-      // this is only work on CREATE and SAVE!!
-      validator: function (pass) {
-        return pass === this.password;
-      },
-      message: "password not same..!!",
-    },
-  },
+  // passwordConfirmation: {
+  //   type: "String",
+  //   required: [true, "Please confirm a password"],
+  //   validate: {
+  //     // this is only work on CREATE and SAVE!!
+  //     validator: function (pass) {
+  //       return pass === this.password;
+  //     },
+  //     message: "password not same..!!",
+  //   },
+  // },
 });
 
 userScema.pre("save", function (next) {
