@@ -25,7 +25,7 @@ exports.getUser = async (req, res) => {
 };
 
 // *******************************************************************************
-
+// generate auto userName 
 const generateUsername = (firstName, lastName) => {
   // Logic to generate a username based on the first name and last name
   const specialCharacters = ["!", "@", "#", "$", "%", "&"]; // Add more special characters if needed
@@ -45,7 +45,7 @@ function generatePassword(length = 8) {
     .toString("hex")
     .slice(0, length);
 }
-// convert to hash
+// convert Generate Password to encypt 
 async function hashPassword(password) {
   const saltRounds = 10;
   return await bcrypt.hash(password, saltRounds);
@@ -77,7 +77,7 @@ exports.createUser = async (req, res) => {
     } else {
       await newUser.save();
       sendCredentils(newUser.email, newUser.userName, geneartedPassword);
-      console.log(newUser.email, newUser.userName, geneartedPassword);
+      
       res.status(201).json({
         message: "User registered successfully.. Check your email for login",
       });

@@ -5,7 +5,7 @@ const userScema = new mongoose.Schema({
   userName: {
     type: "String",
     // required: true,
-    unique: true
+    unique: true,
   },
   firstName: {
     type: String,
@@ -23,19 +23,17 @@ const userScema = new mongoose.Schema({
     unique: true,
     validate: [validator.isEmail, "Please enter a valid email"],
   },
-  mobileNumber:{
-    type : Number,
+  mobileNumber: {
+    type: Number,
     required: true,
-
   },
-  role:{
+  role: {
     type: "String",
-    enum : ['USER', 'ADMIN'],
-    default : 'USER',
+    enum: ["USER", "ADMIN"],
+    default: "USER",
     uppercase: true,
-
-  }
-,  password: {
+  },
+  password: {
     type: "String",
     required: [true, "Please provide a password"],
   },
