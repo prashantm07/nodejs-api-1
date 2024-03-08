@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    padding: 16px;
+    background-color: white;
+    margin: 0 auto;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 50px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 16px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #ea2608;
+    color: white;
+    padding: 8px 10px;
+    margin: 8px 0;
+    margin-left: 100px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  
